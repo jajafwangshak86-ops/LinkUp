@@ -180,7 +180,7 @@ export function useMessages(chatId: string) {
       queryClient.invalidateQueries({ queryKey: ['messages', chatId] });
       queryClient.invalidateQueries({ queryKey: ['chats'] });
       queryClient.invalidateQueries({ queryKey: ['wallet'] });
-      toast.success('Tip sent!');
+      toast.success('STX tip sent!');
     },
     onError: (error: Error) => {
       toast.error(error.message);
