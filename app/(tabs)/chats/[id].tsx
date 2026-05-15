@@ -183,7 +183,7 @@ export default function ChatScreen() {
             </View>
 
             <View className="mt-6">
-              <Text className="mb-2 text-sm text-muted-foreground">Amount (STX)</Text>
+              <Text className="mb-2 text-sm text-muted-foreground">Amount in STX (min 0.001)</Text>
               <View className="rounded-2xl bg-card p-4">
                 <TextInput
                   value={tipAmount}
