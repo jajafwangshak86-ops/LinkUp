@@ -7,9 +7,8 @@
  */
 
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import { toast } from 'sonner-native';
-import { v4 as uuid } from 'uuid';
 import {
   fetchMessages,
   fetchChatIndex,
@@ -100,7 +99,7 @@ export function useSendGaiaMessage(chatId: string, otherAddress: string) {
       paymentAmount?: number;
     }) => {
       const message: GaiaMessage = {
-        id: uuid(),
+        id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
         chatId,
         senderAddress: myAddress,
         content,
