@@ -94,3 +94,33 @@ export async function hasLiked(
   });
   return cvToValue(result) as boolean;
 }
+
+/** Soft-delete a post (author only) */
+export async function deletePost(
+  postId: number,
+  config: Required<LinkUpConfig>,
+): Promise<string> {
+  const tx = await makeContractCall({
+    ...CONTRACTS.posts,
+    functionName: 'delete-post',
+    functionArgs: [uintCV(postId)],
+    senderKey: config.privateKey,
+    network: config.network,
+    anchorMode: AnchorMode.Any,
+  });
+  const result = await broadcastTransaction(tx, config.network);
+  if ('error' in result) throw new Error((result as any).error);
+  return (result as any).txid as string;
+}
+
+/** Get the next available post ID */
+export async function getNextPostId(config: LinkUpConfig = {}): Promise<number> {
+  const result = await callReadOnlyFunction({
+    ...CONTRACTS.posts,
+    functionName: 'get-next-post-id',
+    functionArgs: [],
+    network: config.network ?? 'mainnet',
+    senderAddress: CONTRACTS.posts.contractAddress,
+  });
+  return Number((cvToValue(result) as any)?.value ?? 1);
+}
