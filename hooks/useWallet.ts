@@ -43,7 +43,7 @@ export function useWallet() {
     },
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['wallet'] });
-      toast.success('Transaction sent!');
+      toast.success('Transaction sent! Check Hiro Explorer for status.');
     },
     onError: (error: Error) => {
       toast.error(error.message);
