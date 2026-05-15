@@ -15,3 +15,4 @@ export function getTxExplorerUrl(txId: string): string {
   const chain = stacksConfig.network === 'mainnet' ? '' : '?chain=testnet';
   return `${stacksConfig.explorerUrl}/txid/${txId}${chain}`;
 }
+export type StacksNetwork = 'mainnet' | 'testnet';
