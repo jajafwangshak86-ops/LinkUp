@@ -180,7 +180,7 @@ export default function ReceiveMoneyScreen() {
           <View className="mt-4 rounded-2xl bg-gray-50 p-4">
             <View className="flex-row items-center justify-between">
               <Text className="text-sm text-muted-foreground">Network</Text>
-              <Text className="text-sm font-medium">Stacks Testnet</Text>
+              <Text className="text-sm font-medium">Stacks Testnet (get test STX: explorer.hiro.so/sandbox/faucet)</Text>
             </View>
             <View className="mt-2 flex-row items-center justify-between">
               <Text className="text-sm text-muted-foreground">Transaction Speed</Text>
