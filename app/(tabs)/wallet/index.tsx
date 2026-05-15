@@ -42,7 +42,7 @@ export default function WalletScreen() {
         {/* Header */}
         <View className="bg-purple-600 px-4 pb-8 pt-12">
           <View className="flex-row items-center justify-between">
-            <Text className="text-2xl font-bold text-white">{t('wallet.wallet')}</Text>
+            <Text className="text-2xl font-bold text-white">{t('wallet.wallet')} · STX</Text>
             <TouchableOpacity>
               <Icon as={PieChart} size={24} className="text-white" />
             </TouchableOpacity>
