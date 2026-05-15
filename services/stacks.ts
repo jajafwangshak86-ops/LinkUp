@@ -76,6 +76,6 @@ export async function sendStxViaContract(params: SendStxParams): Promise<string>
   });
 
   const result = await broadcastTransaction({ transaction: tx, network: NETWORK });
-  if ('error' in result) throw new Error(String(result.error));
+  if ('error' in result) throw new Error(`Stacks broadcast failed: ${String(result.error)}`);
   return result.txid;
 }
