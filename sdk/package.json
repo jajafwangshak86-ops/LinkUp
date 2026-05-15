@@ -1,5 +1,5 @@
 {
-  "name": "@linkup/stacks-sdk",
+  "name": "linkup-stacks-sdk",
   "version": "1.0.1",
   "description": "LinkUp SDK — interact with LinkUp smart contracts on Stacks/Bitcoin",
   "main": "dist/index.js",

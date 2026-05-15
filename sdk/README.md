@@ -2,12 +2,12 @@
 
 > SDK for interacting with LinkUp smart contracts on Stacks/Bitcoin
 
-[![npm](https://img.shields.io/npm/v/@linkup/stacks-sdk)](https://www.npmjs.com/package/@linkup/stacks-sdk)
+[![npm](https://img.shields.io/npm/v/linkup-stacks-sdk)](https://www.npmjs.com/package/linkup-stacks-sdk)
 
 ## Install
 
 ```bash
-npm install @linkup/stacks-sdk
+npm install linkup-stacks-sdk
 ```
 
 ## Contracts (Stacks Mainnet)
