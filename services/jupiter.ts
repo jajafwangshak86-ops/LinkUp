@@ -1,4 +1,4 @@
-import { solanaConfig } from '@/lib/solana-config';
+import { stacksConfig } from '@/lib/stacks-config';
 import { JupiterQuote } from '@/types/token';
 
 class JupiterService {
