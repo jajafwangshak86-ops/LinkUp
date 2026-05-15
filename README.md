@@ -285,3 +285,21 @@ Both Ika and Encrypt are pre-alpha. The on-chain programs, gRPC APIs, and accoun
 - **Backend:** NestJS, MongoDB, Pusher, `@solana/web3.js`, `@encrypt.xyz/pre-alpha-solana-client`
 - **On-chain:** Anchor v1, `ika-dwallet-anchor`, `encrypt-anchor`, `encrypt-dsl`
 - **Infrastructure:** Solana Devnet, Ika gRPC (`pre-alpha-dev-1.ika.ika-network.net`), Encrypt gRPC (`pre-alpha-dev-1.encrypt.ika-network.net`)
+
+---
+
+## Stacks/Bitcoin Deployment
+
+```bash
+# Install Clarinet
+brew install clarinet
+
+# Check contract
+clarinet check
+
+# Deploy to testnet
+clarinet deployments apply --testnet
+
+# Set contract address in .env
+EXPO_PUBLIC_CUSTODY_CONTRACT_ADDRESS=<your-deployer-address>
+```
