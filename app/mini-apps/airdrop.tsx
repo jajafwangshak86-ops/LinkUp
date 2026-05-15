@@ -79,7 +79,7 @@ export default function AirdropScreen() {
 
       const { amount, nextClaimAt: newNextClaim } = response.data as any;
       
-      toast.success(`Claimed ${amount} SOL! 🎉`);
+      toast.success(`Claimed ${amount} STX! 🎉`);
       setTotalClaimed(totalClaimed + amount);
       setCanClaim(false);
       setNextClaimAt(new Date(newNextClaim));
@@ -108,7 +108,7 @@ export default function AirdropScreen() {
               <Icon as={Gift} size={40} className="text-white" />
             </View>
             <Text className="mt-3 text-center text-sm text-white/90">
-              Claim free SOL every 24 hours
+              Claim free STX every 24 hours
             </Text>
           </View>
         </View>
@@ -121,7 +121,7 @@ export default function AirdropScreen() {
               <Text className="text-sm text-purple-700 dark:text-purple-300">Total Claimed</Text>
             </View>
             <Text className="mt-1 text-2xl font-bold text-purple-700 dark:text-purple-300">
-              {totalClaimed.toFixed(2)} SOL
+              {totalClaimed.toFixed(2)} STX
             </Text>
           </View>
           <View className="flex-1 rounded-xl bg-blue-50 dark:bg-blue-950 p-4">
@@ -142,7 +142,7 @@ export default function AirdropScreen() {
               <View className="items-center">
                 <Text className="text-sm text-white/80">Available to Claim</Text>
                 <Text className="mt-2 text-5xl font-bold text-white">
-                  {canClaim ? AIRDROP_AMOUNT : '0'} SOL
+                  {canClaim ? AIRDROP_AMOUNT : '0'} STX
                 </Text>
                 
                 {!canClaim && timeUntilNext && (
@@ -190,7 +190,7 @@ export default function AirdropScreen() {
               <View className="flex-1">
                 <Text className="font-semibold">Claim Daily</Text>
                 <Text className="text-sm text-muted-foreground">
-                  Come back every 24 hours to claim your free SOL
+                  Come back every 24 hours to claim your free STX
                 </Text>
               </View>
             </View>
@@ -202,7 +202,7 @@ export default function AirdropScreen() {
               <View className="flex-1">
                 <Text className="font-semibold">Instant Credit</Text>
                 <Text className="text-sm text-muted-foreground">
-                  SOL is instantly added to your wallet
+                  STX is instantly added to your wallet
                 </Text>
               </View>
             </View>
