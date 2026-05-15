@@ -84,7 +84,7 @@ export default function ReceiveMoneyScreen() {
               <View className="rounded-2xl bg-white p-6 shadow-lg">
                 {walletAddress ? (
                   <QRCode
-                    value={walletAddress}
+                    value={walletAddress || ""}
                     size={240}
                     backgroundColor="white"
                     color="black"
