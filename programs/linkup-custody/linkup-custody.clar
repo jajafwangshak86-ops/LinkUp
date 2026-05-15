@@ -1,3 +1,4 @@
+;; Clarity version: 3 (post-Nakamoto)
 ;; linkup-custody.clar
 ;; Non-custodial STX transfer with daily spending guard.
 ;; Users hold their own keys via Hiro Wallet.
