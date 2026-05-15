@@ -9,7 +9,7 @@ export interface TokenConfig {
 
 export const TOKENS: TokenConfig[] = [
   {
-    symbol: 'SOL',
+    symbol: 'STX',
     name: 'Solana',
     icon: '◎',
     color: 'bg-purple-600',
