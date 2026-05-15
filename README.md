@@ -1,8 +1,8 @@
-# SolApp
+# LinkUp
 
-> **Social payments on Solana — non-custodial by design, private by default.**
+> **Social payments on Bitcoin — non-custodial by design, private by default.**
 
-SolApp is a React Native social payment application that combines a familiar social feed, peer-to-peer payments, and real-time chat with institutional-grade security infrastructure powered by [Ika](https://solana-pre-alpha.ika.xyz) and [Encrypt](https://docs.encrypt.xyz).
+LinkUp is a React Native social payment application that combines a familiar social feed, peer-to-peer payments, and real-time chat with institutional-grade security infrastructure powered by [Ika](https://solana-pre-alpha.ika.xyz) and [Encrypt](https://docs.encrypt.xyz).
 
 ---
 
@@ -13,7 +13,7 @@ Every social payment app today makes the same two compromises:
 1. **Custodial risk.** The platform holds your private keys. One server breach drains every wallet. Users trust the company, not cryptography.
 2. **Zero privacy.** All on-chain payment amounts are permanently public. Anyone — competitors, stalkers, tax authorities — can see exactly what you send and to whom.
 
-SolApp eliminates both without sacrificing usability.
+LinkUp eliminates both without sacrificing usability.
 
 ---
 
@@ -28,13 +28,13 @@ SolApp eliminates both without sacrificing usability.
 
 ---
 
-## How SolApp Uses Ika and Encrypt
+## How LinkUp Uses Ika and Encrypt
 
 ### Ika — Zero-Trust Custody
 
-**Program:** `programs/solapp-custody` | **SDK:** `ika-dwallet-anchor`
+**Program:** `programs/linkup-custody` | **SDK:** `ika-dwallet-anchor`
 
-The current industry standard for social payment apps is a custodial backend — the server holds every user's private key. SolApp replaces this with **dWallets**: programmable signing keys co-controlled by the user and the Ika Network via 2PC-MPC.
+The current industry standard for social payment apps is a custodial backend — the server holds every user's private key. LinkUp replaces this with **dWallets**: programmable signing keys co-controlled by the user and the Ika Network via 2PC-MPC.
 
 **Flow:**
 
@@ -42,7 +42,7 @@ The current industry standard for social payment apps is a custodial backend —
 User signs up
     → Backend calls Ika gRPC (DKG)
     → Ika Network produces a dWallet keypair
-    → solapp-custody program transfers authority to its CPI PDA
+    → linkup-custody program transfers authority to its CPI PDA
     → Backend can enforce rules (2FA, spending limits) but cannot sign alone
 
 User sends SOL
@@ -52,15 +52,15 @@ User sends SOL
     → Transaction broadcasts with a signature the backend never held
 ```
 
-**What this means:** Even if the SolApp backend is fully compromised, an attacker cannot move user funds. The signing authority is distributed across the Ika validator network.
+**What this means:** Even if the LinkUp backend is fully compromised, an attacker cannot move user funds. The signing authority is distributed across the Ika validator network.
 
 ---
 
 ### Encrypt — Confidential Payments
 
-**Program:** `programs/solapp-privacy` | **SDK:** `encrypt-anchor`, `@encrypt.xyz/pre-alpha-solana-client`
+**Program:** `programs/linkup-privacy` | **SDK:** `encrypt-anchor`, `@encrypt.xyz/pre-alpha-solana-client`
 
-Tip amounts sent inside SolApp chat are encrypted using **Fully Homomorphic Encryption (FHE)**. The computation runs on ciphertexts — no plaintext amount ever appears on-chain, in logs, or in any explorer.
+Tip amounts sent inside LinkUp chat are encrypted using **Fully Homomorphic Encryption (FHE)**. The computation runs on ciphertexts — no plaintext amount ever appears on-chain, in logs, or in any explorer.
 
 **Flow:**
 
@@ -95,7 +95,7 @@ Validators compute on ciphertexts. The actual values are never decrypted on-chai
 
 ```
 ┌─────────────────────────────────────────────┐
-│           SolApp Mobile (Expo / RN)          │
+│           LinkUp Mobile (Expo / RN)          │
 │  Feed · Wallet · Chat · Pay · Mini-Apps      │
 └────────────────────┬────────────────────────┘
                      │ REST + Pusher
@@ -115,8 +115,8 @@ Validators compute on ciphertexts. The actual values are never decrypted on-chai
 ┌────────────────────▼────────────────────────┐
 │              On-Chain Programs               │
 │                                              │
-│  solapp-custody  (Ika dWallet custody)       │
-│  solapp-privacy  (Encrypt FHE private tips)  │
+│  linkup-custody  (Ika dWallet custody)       │
+│  linkup-privacy  (Encrypt FHE private tips)  │
 │                                              │
 │  Ika Program   87W54kGYFQ1rgWqMeu4XTPHWXWmX │
 │  Encrypt Prog  4ebfzWdKnrnGseuQpezXdG8yCdHq │
@@ -131,11 +131,11 @@ Validators compute on ciphertexts. The actual values are never decrypted on-chai
 |---|---|---|
 | Ika dWallet | Devnet | `87W54kGYFQ1rgWqMeu4XTPHWXWmXSQCcjm8vCTfiq1oY` |
 | Encrypt | Devnet | `4ebfzWdKnrnGseuQpezXdG8yCdHqwQ1SSBHD3bWArND8` |
-| solapp-custody | Devnet | `8nWefFt12D1t6TyjBfk6V4CuTeVwjKNXHMcpZQqSpJVF` |
-| solapp-privacy | Devnet | `9SszUmTNFZq2Hnb4Y3XPLAsDwc4CVQZuaxcDbxmtqWe4` |
+| linkup-custody | Devnet | `8nWefFt12D1t6TyjBfk6V4CuTeVwjKNXHMcpZQqSpJVF` |
+| linkup-privacy | Devnet | `9SszUmTNFZq2Hnb4Y3XPLAsDwc4CVQZuaxcDbxmtqWe4` |
 
-**Live Backend:** `https://solcial-backend.onrender.com/api`  
-**Health:** `https://solcial-backend.onrender.com/api/health`
+**Live Backend:** `https://linkup-backend.onrender.com/api`  
+**Health:** `https://linkup-backend.onrender.com/api/health`
 
 ---
 
@@ -161,12 +161,12 @@ solana config set --url devnet
 solana airdrop 2   # fund your deploy wallet
 
 # Custody program (Ika)
-cd programs/solapp-custody
+cd programs/linkup-custody
 anchor build && anchor deploy
 # → note the Program ID
 
 # Privacy program (Encrypt)
-cd ../solapp-privacy
+cd ../linkup-privacy
 anchor build && anchor deploy
 # → note the Program ID
 ```
@@ -192,14 +192,14 @@ cp target/release/ika-dwallet-helper ../../bin/
 ```env
 SOLANA_RPC_URL=https://api.devnet.solana.com
 ENCRYPTION_KEY=<32-byte hex key>
-SOLAPP_CUSTODY_PROGRAM_ID=<from step 1>
-SOLAPP_PRIVACY_PROGRAM_ID=<from step 1>
+LINKUP_CUSTODY_PROGRAM_ID=<from step 1>
+LINKUP_PRIVACY_PROGRAM_ID=<from step 1>
 IKA_HELPER_BIN=./bin/ika-dwallet-helper
 ```
 
-**Mobile App** (`SolApp/.env`):
+**Mobile App** (`LinkUp/.env`):
 ```env
-EXPO_PUBLIC_API_URL=https://solcial-backend.onrender.com/api
+EXPO_PUBLIC_API_URL=https://linkup-backend.onrender.com/api
 EXPO_PUBLIC_PUSHER_KEY=<pusher key>
 EXPO_PUBLIC_PUSHER_CLUSTER=mt1
 ```
@@ -214,7 +214,7 @@ cd Sol-App/apps/backend
 pnpm install && pnpm start:dev
 
 # Mobile (separate terminal)
-cd SolApp
+cd LinkUp
 pnpm install && pnpm start
 # Press 'a' → Android  |  'i' → iOS  |  'w' → Web
 ```
@@ -248,7 +248,7 @@ pnpm install && pnpm start
 ## Repository Structure
 
 ```
-SolApp/                          # React Native mobile app
+LinkUp/                          # React Native mobile app
 ├── app/                         # Expo Router screens
 ├── components/                  # UI components
 ├── hooks/                       # React Query hooks
@@ -258,8 +258,8 @@ SolApp/                          # React Native mobile app
 │   └── encrypt.ts               # Encrypt FHE backend service
 ├── types/index.ts               # Shared TypeScript types
 └── programs/
-    ├── solapp-custody/          # Anchor program — Ika dWallet custody
-    ├── solapp-privacy/          # Anchor program — Encrypt FHE private tips
+    ├── linkup-custody/          # Anchor program — Ika dWallet custody
+    ├── linkup-privacy/          # Anchor program — Encrypt FHE private tips
     └── ika-helper/              # Rust binary — Ika gRPC DKG client
 
 Sol-App/apps/backend/            # NestJS backend
