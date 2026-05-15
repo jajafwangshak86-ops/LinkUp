@@ -10,40 +10,41 @@
 (define-constant ERR-SELF-TIP        (err u203))
 (define-constant ERR-NOT-AUTHOR      (err u204))
 (define-constant ERR-CONTENT-EMPTY   (err u205))
+(define-constant ERR-OVERFLOW        (err u206))
+
+(define-constant MAX-UINT u340282366920938463463374607431768211455)
 
 ;; ─── Storage ─────────────────────────────────────────────────────────────────
 
-;; Post registry: post-id → post metadata
 (define-map posts
   { post-id: uint }
   {
     author:       principal,
-    content-hash: (buff 32),   ;; SHA-256 of full post JSON stored in Gaia
-    gaia-url:     (string-utf8 256), ;; Gaia URL where full content lives
+    content-hash: (buff 32),
+    gaia-url:     (string-utf8 256),
     likes:        uint,
-    tips-total:   uint,        ;; total micro-STX tipped
-    created-at:   uint,        ;; block height
+    tips-total:   uint,
+    created-at:   uint,
     deleted:      bool,
   }
 )
 
-;; Like registry: prevent double-likes
 (define-map likes
   { post-id: uint, liker: principal }
   { liked: bool }
 )
 
-;; Auto-increment post ID
 (define-data-var next-post-id uint u1)
 
 ;; ─── Public functions ─────────────────────────────────────────────────────────
 
-;; create-post: register a post on-chain (content stored in Gaia)
 (define-public (create-post
     (content-hash (buff 32))
     (gaia-url (string-utf8 256)))
   (let ((post-id (var-get next-post-id)))
     (asserts! (> (len gaia-url) u0) ERR-CONTENT-EMPTY)
+    ;; Bug 3 fix: guard next-post-id overflow before incrementing
+    (asserts! (< post-id MAX-UINT) ERR-OVERFLOW)
     (map-set posts { post-id: post-id }
       {
         author:       tx-sender,
@@ -60,7 +61,6 @@
   )
 )
 
-;; like-post: like a post (one like per principal per post)
 (define-public (like-post (post-id uint))
   (let ((post (unwrap! (map-get? posts { post-id: post-id }) ERR-NOT-FOUND)))
     (asserts! (not (get deleted post)) ERR-NOT-FOUND)
@@ -76,12 +76,13 @@
   )
 )
 
-;; tip-post: send STX tip to post author
 (define-public (tip-post (post-id uint) (amount uint))
   (let ((post (unwrap! (map-get? posts { post-id: post-id }) ERR-NOT-FOUND)))
     (asserts! (not (get deleted post)) ERR-NOT-FOUND)
     (asserts! (> amount u0) ERR-ZERO-TIP)
     (asserts! (not (is-eq tx-sender (get author post))) ERR-SELF-TIP)
+    ;; Bug 2 fix: guard tips-total overflow before adding
+    (asserts! (<= amount (- MAX-UINT (get tips-total post))) ERR-OVERFLOW)
     (try! (stx-transfer? amount tx-sender (get author post)))
     (map-set posts { post-id: post-id }
       (merge post { tips-total: (+ (get tips-total post) amount) })
@@ -90,7 +91,6 @@
   )
 )
 
-;; delete-post: author can soft-delete their post
 (define-public (delete-post (post-id uint))
   (let ((post (unwrap! (map-get? posts { post-id: post-id }) ERR-NOT-FOUND)))
     (asserts! (is-eq tx-sender (get author post)) ERR-NOT-AUTHOR)
@@ -112,3 +112,12 @@
 (define-read-only (get-next-post-id)
   (var-get next-post-id)
 )
+
+;; Error code reference:
+;; u200 — ERR-NOT-FOUND: post does not exist or is deleted
+;; u201 — ERR-ALREADY-LIKED: caller already liked this post
+;; u202 — ERR-ZERO-TIP: tip amount must be > 0
+;; u203 — ERR-SELF-TIP: cannot tip your own post
+;; u204 — ERR-NOT-AUTHOR: only the author can delete
+;; u205 — ERR-CONTENT-EMPTY: gaia-url must not be empty
+;; u206 — ERR-OVERFLOW: arithmetic overflow guard
