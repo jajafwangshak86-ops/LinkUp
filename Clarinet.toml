@@ -4,6 +4,7 @@ authors = []
 
 [contracts.linkup-custody]
 path = "programs/linkup-custody/linkup-custody.clar"
+requirements = []
 
 [repl.settings]
 enable_repl = true
