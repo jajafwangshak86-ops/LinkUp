@@ -43,3 +43,9 @@ expo-env.d.ts
 #native builds
 android/
 ios/
+# Rust build artifacts
+programs/*/target/
+programs/ika-helper/target/
+
+# Stacks
+.cache/
