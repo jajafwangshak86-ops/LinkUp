@@ -29,6 +29,8 @@
     "@react-navigation/native": "^7.0.0",
     "@rn-primitives/portal": "~1.3.0",
     "@rn-primitives/slot": "^1.2.0",
+    "@scure/bip32": "^2.2.0",
+    "@scure/bip39": "^2.2.0",
     "@stacks/connect": "^7.10.1",
     "@stacks/transactions": "^6.17.0",
     "@tanstack/react-query": "^5.90.21",
@@ -78,6 +80,7 @@
     "tailwind-merge": "^3.3.1",
     "tailwindcss": "^3.4.14",
     "tailwindcss-animate": "^1.0.7",
+    "ts-node": "^10.9.2",
     "zustand": "^5.0.11"
   },
   "devDependencies": {
@@ -85,7 +88,7 @@
     "@types/react": "~19.1.10",
     "prettier": "^3.6.2",
     "prettier-plugin-tailwindcss": "^0.6.14",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.3"
   },
   "private": true
 }
