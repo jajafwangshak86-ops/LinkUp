@@ -22,7 +22,7 @@ export default function WalletScreen() {
   const { holdings, totalValue, isLoading: isLoadingHoldings, refetch: refetchHoldings } = useTokenHoldings(userId);
   const { data: tokenPrices, isLoading: isLoadingPrices, refetch: refetchPrices } = useAllTokenPrices();
 
-  const stxPrice = tokenPrices?.STX || 0;
+  const stxPrice = tokenPrices?.STX ?? 0;
   const usdValue = balance * stxPrice;
   });
 
