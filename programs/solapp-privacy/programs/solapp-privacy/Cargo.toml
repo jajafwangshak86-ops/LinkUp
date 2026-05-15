@@ -1,0 +1,34 @@
+[package]
+name = "linkup-privacy"
+version = "0.1.0"
+description = "Created with Anchor"
+edition = "2021"
+
+[lib]
+crate-type = ["cdylib", "lib"]
+name = "linkup_privacy"
+
+[features]
+default = []
+cpi = ["no-entrypoint"]
+no-entrypoint = []
+no-idl = []
+no-log-ix-name = []
+idl-build = ["anchor-lang/idl-build"]
+anchor-debug = []
+custom-heap = []
+custom-panic = []
+
+
+[dependencies]
+anchor-lang = "1"
+encrypt-types = { git = "https://github.com/dwallet-labs/encrypt-pre-alpha" }
+encrypt-dsl = { package = "encrypt-solana-dsl", git = "https://github.com/dwallet-labs/encrypt-pre-alpha" }
+encrypt-anchor = { git = "https://github.com/dwallet-labs/encrypt-pre-alpha" }
+
+[dev-dependencies]
+encrypt-solana-test = { git = "https://github.com/dwallet-labs/encrypt-pre-alpha" }
+
+
+[lints.rust]
+unexpected_cfgs = { level = "warn", check-cfg = ['cfg(target_os, values("solana"))'] }
