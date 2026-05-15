@@ -6,6 +6,10 @@ authors = []
 path = "programs/linkup-custody/linkup-custody.clar"
 requirements = []
 
+[contracts.linkup-posts]
+path = "programs/linkup-posts/linkup-posts.clar"
+requirements = []
+
 [repl.settings]
 enable_repl = true
 enable_debugger = true
