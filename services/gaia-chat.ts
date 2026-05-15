@@ -10,8 +10,7 @@
  *   linkup/chats/index.json              → array of chat IDs + last message preview
  */
 
-import { stacksConfig } from '@/lib/stacks-config';
-
+// Bug 1 fix: removed unused stacksConfig import
 const GAIA_HUB = 'https://hub.hiro.so';
 
 export interface GaiaMessage {
@@ -37,17 +36,29 @@ export interface GaiaChatIndex {
 
 /**
  * Fetch messages for a chat from the sender's Gaia hub.
- * This is a plain HTTPS GET — returns instantly.
+ * Reads the message index (list of IDs) then fetches each message file.
+ * Each message is its own file — no race condition on write.
  */
 export async function fetchMessages(
   ownerAddress: string,
   chatId: string,
 ): Promise<GaiaMessage[]> {
-  const url = `${GAIA_HUB}/read/${ownerAddress}/linkup/chats/${chatId}/messages.json`;
-  const res = await fetch(url);
-  if (res.status === 404) return [];
-  if (!res.ok) throw new Error(`Gaia read failed: ${res.status}`);
-  return res.json();
+  // Read the index of message IDs
+  const indexUrl = `${GAIA_HUB}/read/${ownerAddress}/linkup/chats/${chatId}/index.json`;
+  const indexRes = await fetch(indexUrl);
+  if (indexRes.status === 404) return [];
+  if (!indexRes.ok) throw new Error(`Gaia read failed: ${indexRes.status}`);
+  const ids: string[] = await indexRes.json();
+
+  // Fetch each message in parallel
+  const messages = await Promise.all(
+    ids.map(async (id) => {
+      const res = await fetch(`${GAIA_HUB}/read/${ownerAddress}/linkup/chats/${chatId}/${id}.json`);
+      if (!res.ok) return null;
+      return res.json() as Promise<GaiaMessage>;
+    })
+  );
+  return messages.filter((m): m is GaiaMessage => m !== null);
 }
 
 /**
@@ -65,7 +76,9 @@ export async function fetchChatIndex(ownerAddress: string): Promise<GaiaChatInde
 
 /**
  * Append a message to a chat in the user's Gaia hub.
- * The gaiaToken comes from the user's Hiro Wallet session.
+ * Each message is stored as its own file to avoid read-modify-write races.
+ * File: linkup/chats/{chatId}/{message.id}.json
+ * Index: linkup/chats/{chatId}/index.json (append-only list of IDs)
  */
 export async function appendMessage(
   ownerAddress: string,
@@ -73,16 +86,20 @@ export async function appendMessage(
   chatId: string,
   message: GaiaMessage,
 ): Promise<void> {
-  // Read existing messages first
-  const existing = await fetchMessages(ownerAddress, chatId);
-  existing.push(message);
-
+  // Write the message file (atomic — unique ID per message)
   await writeGaia(
     ownerAddress,
     gaiaToken,
-    `linkup/chats/${chatId}/messages.json`,
-    existing,
+    `linkup/chats/${chatId}/${message.id}.json`,
+    message,
   );
+
+  // Update the index — read current IDs, append new one
+  const indexUrl = `${GAIA_HUB}/read/${ownerAddress}/linkup/chats/${chatId}/index.json`;
+  const indexRes = await fetch(indexUrl);
+  const ids: string[] = indexRes.ok ? await indexRes.json() : [];
+  ids.push(message.id);
+  await writeGaia(ownerAddress, gaiaToken, `linkup/chats/${chatId}/index.json`, ids);
 }
 
 /**
