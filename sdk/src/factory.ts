@@ -96,3 +96,19 @@ export async function getStats(config: LinkUpConfig = {}): Promise<{
     totalTips:  Number(val['total-tips']?.value ?? 0),
   };
 }
+
+/** Look up a principal by username */
+export async function getAddressByUsername(
+  username: string,
+  config: LinkUpConfig = {},
+): Promise<string | null> {
+  const result = await callReadOnlyFunction({
+    ...CONTRACTS.factory,
+    functionName: 'get-address-by-username',
+    functionArgs: [stringUtf8CV(username)],
+    network: config.network ?? 'mainnet',
+    senderAddress: CONTRACTS.factory.contractAddress,
+  });
+  const val = cvToValue(result) as any;
+  return val?.value?.address?.value ?? null;
+}
