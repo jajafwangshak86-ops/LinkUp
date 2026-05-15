@@ -33,7 +33,7 @@ class DexScreenerService {
 
   async getTrendingTokens(): Promise<Token[]> {
     try {
-      const response = await fetch(`${this.baseUrl}/pairs/solana`);
+      const response = await fetch(`${this.baseUrl}/pairs/stacks`);
       const data = await response.json();
       
       if (!data.pairs || data.pairs.length === 0) {
