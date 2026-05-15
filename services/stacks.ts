@@ -56,7 +56,7 @@ export async function getRemainingAllowance(userAddress: string): Promise<bigint
 export interface SendStxParams {
   senderPrivateKey: string; // hex — stored encrypted in DB
   recipientAddress: string;
-  amountUstx: bigint;
+  amountUstx: bigint; // use toUstx() from lib/stx.ts
 }
 
 export async function sendStxViaContract(params: SendStxParams): Promise<string> {
