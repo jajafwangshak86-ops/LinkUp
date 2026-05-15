@@ -4,8 +4,8 @@
 ;; Users hold their own keys via Hiro Wallet.
 
 (define-constant ERR-DAILY-LIMIT-EXCEEDED (err u100))
-(define-constant ERR-ZERO-AMOUNT (err u101))
-(define-constant ERR-SELF-TRANSFER (err u102))
+(define-constant ERR-ZERO-AMOUNT          (err u101))
+(define-constant ERR-SELF-TRANSFER        (err u102))
 
 (define-constant DAILY-LIMIT-USTX u1000000000) ;; 1000 STX in micro-STX
 
@@ -15,42 +15,42 @@
   { total: uint }
 )
 
-;; Fix 1: use stacks-block-height (Clarity 3 / post-Nakamoto)
 (define-private (current-day)
-  (/ stacks-block-height u144)
+  (/ stacks-block-height u144) ;; ~144 blocks per day (10-min Bitcoin blocks)
 )
 
-(define-private (get-spent (user principal))
+(define-private (get-spent-on-day (user principal) (day uint))
   (default-to u0
-    (get total (map-get? daily-spend { user: user, day: (current-day) }))
+    (get total (map-get? daily-spend { user: user, day: day }))
   )
 )
 
-(define-private (record-spend (user principal) (amount uint))
-  (map-set daily-spend
-    { user: user, day: (current-day) }
-    { total: (+ (get-spent user) amount) }
-  )
+;; Bug 1 fix: accept day + current-spent as params to avoid re-reading map
+;; and eliminate the block-boundary day-mismatch risk.
+(define-private (record-spend (user principal) (day uint) (new-total uint))
+  (map-set daily-spend { user: user, day: day } { total: new-total })
 )
 
 ;; send-stx: transfer STX with daily limit enforcement
 (define-public (send-stx (recipient principal) (amount uint))
-  (let ((spent (get-spent tx-sender)))
+  (let (
+    (day   (current-day))
+    (spent (get-spent-on-day tx-sender (current-day)))
+  )
     (asserts! (> amount u0) ERR-ZERO-AMOUNT)
     (asserts! (not (is-eq tx-sender recipient)) ERR-SELF-TRANSFER)
-    ;; Fix 3: guard against overflow — if amount alone exceeds the limit, reject early
     (asserts! (<= amount DAILY-LIMIT-USTX) ERR-DAILY-LIMIT-EXCEEDED)
     (asserts! (<= (+ spent amount) DAILY-LIMIT-USTX) ERR-DAILY-LIMIT-EXCEEDED)
-    ;; Fix 2: transfer first, record spend only on success
     (try! (stx-transfer? amount tx-sender recipient))
-    (record-spend tx-sender amount)
+    ;; Bug 1 fix: record spend using the same `day` and `spent` values bound above
+    (record-spend tx-sender day (+ spent amount))
     (ok true)
   )
 )
 
 ;; Read-only: check remaining daily allowance for a user
 (define-read-only (remaining-allowance (user principal))
-  (let ((spent (get-spent user)))
+  (let ((spent (get-spent-on-day user (current-day))))
     (if (>= spent DAILY-LIMIT-USTX)
       u0
       (- DAILY-LIMIT-USTX spent)
