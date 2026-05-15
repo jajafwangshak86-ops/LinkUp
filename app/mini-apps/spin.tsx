@@ -66,7 +66,7 @@ export default function SpinScreen() {
         setSpinCount(spinCount + 1);
 
         if (multiplier > 0) {
-          toast.success(`${multiplier}x! You won ${winAmount.toFixed(4)} SOL!`);
+          toast.success(`${multiplier}x! You won ${winAmount.toFixed(4)} STX!`);
           setTotalWon(totalWon + winAmount);
         } else {
           toast.error('Better luck next time!');
@@ -143,7 +143,7 @@ export default function SpinScreen() {
               <Text className="text-sm text-pink-700 dark:text-pink-300">Total Won</Text>
             </View>
             <Text className="mt-1 text-2xl font-bold text-pink-700 dark:text-pink-300">
-              {totalWon.toFixed(4)} SOL
+              {totalWon.toFixed(4)} STX
             </Text>
           </View>
           <View className="flex-1 rounded-xl bg-purple-50 dark:bg-purple-950 p-4">
@@ -174,7 +174,7 @@ export default function SpinScreen() {
         <View className="mx-4 mt-6">
           {/* Bet Amount */}
           <View className="rounded-2xl bg-card p-4">
-            <Text className="text-sm text-muted-foreground">Bet Amount (SOL)</Text>
+            <Text className="text-sm text-muted-foreground">Bet Amount (STX)</Text>
             <TextInput
               value={betAmount}
               onChangeText={setBetAmount}
@@ -184,7 +184,7 @@ export default function SpinScreen() {
               placeholderTextColor="#9ca3af"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
-              Balance: {balance.toFixed(4)} SOL
+              Balance: {balance.toFixed(4)} STX
             </Text>
           </View>
 

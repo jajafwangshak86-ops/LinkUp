@@ -67,10 +67,10 @@ export default function CoinFlipScreen() {
         setLastOutcome(won ? 'win' : 'lose');
 
         if (won) {
-          toast.success(`You won ${winAmount.toFixed(4)} SOL!`);
+          toast.success(`You won ${winAmount.toFixed(4)} STX!`);
           setTotalWins(totalWins + 1);
         } else {
-          toast.error(`You lost ${betAmount} SOL`);
+          toast.error(`You lost ${betAmount} STX`);
           setTotalLosses(totalLosses + 1);
         }
 
@@ -163,7 +163,7 @@ export default function CoinFlipScreen() {
         <View className="mx-4 mt-6">
           {/* Bet Amount */}
           <View className="rounded-2xl bg-card p-4">
-            <Text className="text-sm text-muted-foreground">Bet Amount (SOL)</Text>
+            <Text className="text-sm text-muted-foreground">Bet Amount (STX)</Text>
             <TextInput
               value={betAmount}
               onChangeText={setBetAmount}
@@ -173,7 +173,7 @@ export default function CoinFlipScreen() {
               placeholderTextColor="#9ca3af"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
-              Balance: {balance.toFixed(4)} SOL
+              Balance: {balance.toFixed(4)} STX
             </Text>
           </View>
 
@@ -212,7 +212,7 @@ export default function CoinFlipScreen() {
               Win Multiplier: 2x
             </Text>
             <Text className="text-center text-3xl font-bold text-yellow-700 dark:text-yellow-300">
-              {betAmount ? (parseFloat(betAmount) * 2).toFixed(4) : '0'} SOL
+              {betAmount ? (parseFloat(betAmount) * 2).toFixed(4) : '0'} STX
             </Text>
             <Text className="text-center text-xs text-yellow-600 dark:text-yellow-400">
               Potential win if you guess correctly

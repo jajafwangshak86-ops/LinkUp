@@ -78,10 +78,10 @@ export default function DiceGameScreen() {
         setLastResult(won ? 'win' : 'lose');
 
         if (won) {
-          toast.success(`You won ${winAmount.toFixed(4)} SOL!`);
+          toast.success(`You won ${winAmount.toFixed(4)} STX!`);
           setTotalWins(totalWins + 1);
         } else {
-          toast.error(`You lost ${betAmount} SOL`);
+          toast.error(`You lost ${betAmount} STX`);
           setTotalLosses(totalLosses + 1);
         }
 
@@ -117,7 +117,7 @@ export default function DiceGameScreen() {
               </View>
             </Animated.View>
             <Text className="mt-3 text-center text-sm text-white/90">
-              Roll the dice and win SOL!
+              Roll the dice and win STX!
             </Text>
           </View>
         </View>
@@ -159,7 +159,7 @@ export default function DiceGameScreen() {
         <View className="mx-4 mt-6">
           {/* Bet Amount */}
           <View className="rounded-2xl bg-card p-4">
-            <Text className="text-sm text-muted-foreground">Bet Amount (SOL)</Text>
+            <Text className="text-sm text-muted-foreground">Bet Amount (STX)</Text>
             <TextInput
               value={betAmount}
               onChangeText={setBetAmount}
@@ -169,7 +169,7 @@ export default function DiceGameScreen() {
               placeholderTextColor="#9ca3af"
             />
             <Text className="mt-2 text-sm text-muted-foreground">
-              Balance: {balance.toFixed(4)} SOL
+              Balance: {balance.toFixed(4)} STX
             </Text>
           </View>
 
@@ -222,7 +222,7 @@ export default function DiceGameScreen() {
               {calculateMultiplier()}x
             </Text>
             <Text className="text-center text-xs text-purple-600 dark:text-purple-400">
-              Potential win: {betAmount ? (parseFloat(betAmount) * parseFloat(calculateMultiplier())).toFixed(4) : '0'} SOL
+              Potential win: {betAmount ? (parseFloat(betAmount) * parseFloat(calculateMultiplier())).toFixed(4) : '0'} STX
             </Text>
           </View>
 
