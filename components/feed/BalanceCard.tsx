@@ -52,7 +52,7 @@ export function BalanceCard({
                 <ActivityIndicator size="large" color="#ffffff" className="mt-2" />
               ) : (
                 <Text className={`mt-1 ${isSmall ? 'text-3xl' : 'text-4xl'} font-bold text-white`}>
-                  {showBalance ? `${balance.toFixed(2)} SOL` : '••••••'}
+                  {showBalance ? `${balance.toFixed(2)} STX` : '••••••'}
                 </Text>
               )}
 
