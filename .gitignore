@@ -51,3 +51,7 @@ programs/ika-helper/target/
 .cache/
 settings/Mainnet.toml
 .npmrc
+sdk/dist/
+sdk/node_modules/
+sdk-react/node_modules/
+sdk-cli/node_modules/
