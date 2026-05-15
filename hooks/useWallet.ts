@@ -82,3 +82,5 @@ export function useTransactionDetails(txId: string) {
     enabled: !!txId,
   });
 }
+
+export { useTransactionDetails } from './useWallet';
