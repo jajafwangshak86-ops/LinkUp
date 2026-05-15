@@ -50,3 +50,4 @@ programs/ika-helper/target/
 # Stacks
 .cache/
 settings/Mainnet.toml
+.npmrc
