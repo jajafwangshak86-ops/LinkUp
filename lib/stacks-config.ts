@@ -10,3 +10,8 @@ export const stacksConfig = {
   contractAddress: process.env.EXPO_PUBLIC_CUSTODY_CONTRACT_ADDRESS || '',
   contractName: 'linkup-custody',
 } as const;
+
+export function getTxExplorerUrl(txId: string): string {
+  const chain = stacksConfig.network === 'mainnet' ? '' : '?chain=testnet';
+  return `${stacksConfig.explorerUrl}/txid/${txId}${chain}`;
+}
