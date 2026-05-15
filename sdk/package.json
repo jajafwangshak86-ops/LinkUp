@@ -1,0 +1,26 @@
+{
+  "name": "@linkup/stacks-sdk",
+  "version": "1.0.0",
+  "description": "LinkUp SDK — interact with LinkUp smart contracts on Stacks/Bitcoin",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": ["dist"],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": ["stacks", "bitcoin", "clarity", "social", "payments", "linkup", "web3"],
+  "author": "LinkUp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jajafwangshak86-ops/LinkUp.git"
+  },
+  "homepage": "https://github.com/jajafwangshak86-ops/LinkUp#readme",
+  "dependencies": {
+    "@stacks/transactions": "^6.17.0"
+  },
+  "devDependencies": {
+    "typescript": "~5.9.2"
+  }
+}
