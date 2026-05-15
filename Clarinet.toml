@@ -1,0 +1,10 @@
+[project]
+name = "linkup"
+authors = []
+
+[contracts.linkup-custody]
+path = "programs/linkup-custody/linkup-custody.clar"
+
+[repl.settings]
+enable_repl = true
+enable_debugger = true

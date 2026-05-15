@@ -1,0 +1,80 @@
+{
+  "expo": {
+    "name": "LinkUp",
+    "slug": "linkup",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/images/appicon.png",
+    "scheme": "linkup",
+    "userInterfaceStyle": "automatic",
+    "newArchEnabled": true,
+    "splash": {
+      "image": "./assets/images/appicon.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true,
+      "icon": "./assets/images/not.png",
+      "bundleIdentifier": "app.linkup",
+      "associatedDomains": ["applinks:linkup.app"]
+    },
+    "android": {
+      "edgeToEdgeEnabled": true,
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/appicon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "softwareKeyboardLayoutMode":"pan",
+      "package": "app.linkup",
+      "notification": {
+        "icon": "./assets/images/not.png",
+        "color": "#ffffff"
+      },
+      "intentFilters": [
+        {
+          "action": "VIEW",
+          "autoVerify": true,
+          "data": [
+            {
+              "scheme": "https",
+              "host": "linkup.app",
+              "pathPrefix": "/"
+            },
+            {
+              "scheme": "linkup"
+            }
+          ],
+          "category": ["BROWSABLE", "DEFAULT"]
+        }
+      ]
+    },
+    "web": {
+      "bundler": "metro",
+      "output": "static",
+      "favicon": "./assets/images/appicon.png"
+    },
+    "plugins": [
+      "expo-router", 
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/images/not.png",
+          "color": "#ffffff",
+          "sounds": []
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "56fdee7f-b519-4073-82f5-a101986d5c31"
+      }
+    }
+  }
+}
