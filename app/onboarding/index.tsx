@@ -19,11 +19,11 @@ const ONBOARDING_DATA = [
   {
     icon: Zap,
     title: 'Lightning Fast\nPayments',
-    description: 'Send and receive money in seconds\nwith Solana\'s speed',
+    description: 'Send and receive money in seconds\nwith Stacks\'s speed',
   },
   {
     icon: Sparkles,
-    title: 'Welcome to\nSolana Social',
+    title: 'Welcome to\nStacks Social',
     description: 'Your all-in-one super app for\npayments, social and more',
   },
   {
