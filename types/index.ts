@@ -19,6 +19,12 @@ export interface User {
 // Post types
 export interface Post {
   id: string;
+  /** On-chain post ID (uint from linkup-posts contract) */
+  onChainId?: number;
+  /** Gaia URL where full content is stored */
+  gaiaUrl?: string;
+  /** SHA-256 content hash stored on-chain */
+  contentHash?: string;
   author: {
     _id: string;
     username: string;
@@ -71,23 +77,18 @@ export interface Chat {
 
 export interface Message {
   id: string;
-  chat: string;
-  sender: {
-    _id: string;
-    username: string;
-    name?: string;
-    avatar?: string;
-  };
+  chatId: string;
+  /** Stacks wallet address of sender */
+  senderAddress: string;
   content: string;
-  type: 'text' | 'payment' | 'image';
-  /** Amount in micro-STX (integer) */
+  type: 'text' | 'payment';
+  /** Amount in micro-STX */
   paymentAmount?: number;
-  /** Stacks transaction ID */
+  /** Stacks transaction ID for payment messages */
   paymentTxId?: string;
-  imageUrl?: string;
-  isRead: boolean;
-  isMine: boolean;
-  createdAt: string;
+  createdAt: number; // unix ms
+  /** True if this message was sent by the current user */
+  isMine?: boolean;
 }
 
 // Transaction types
