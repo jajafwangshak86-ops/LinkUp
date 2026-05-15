@@ -216,7 +216,7 @@ export default function SwapScreen() {
               <Icon as={Coins} size={40} className="text-white" />
             </View>
             <Text className="mt-3 text-center text-sm text-white/90">
-              Swap tokens instantly on Solana
+              Swap tokens instantly on Stacks
             </Text>
           </View>
         </View>
