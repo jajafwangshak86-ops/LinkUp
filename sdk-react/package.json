@@ -1,0 +1,16 @@
+{
+  "name": "linkup-react",
+  "version": "1.0.0",
+  "description": "React hooks for LinkUp on Stacks/Bitcoin",
+  "main": "src/index.js",
+  "keywords": ["stacks", "bitcoin", "react", "hooks", "linkup", "web3", "clarity"],
+  "author": "LinkUp",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jajafwangshak86-ops/LinkUp.git"
+  },
+  "peerDependencies": {
+    "linkup-stacks-sdk": ">=1.0.0"
+  }
+}
