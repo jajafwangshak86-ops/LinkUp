@@ -48,3 +48,13 @@ export const toUstx = (stx: number): bigint => BigInt(Math.round(stx * 1_000_000
 
 /** Convert micro-STX to STX */
 export const fromUstx = (ustx: bigint | number): number => Number(ustx) / 1_000_000;
+
+/** Validate a Stacks mainnet address (SP...) */
+export function isValidMainnetAddress(address: string): boolean {
+  return /^SP[A-Z0-9]{38,}$/.test(address);
+}
+
+/** Validate a Stacks testnet address (ST...) */
+export function isValidTestnetAddress(address: string): boolean {
+  return /^ST[A-Z0-9]{38,}$/.test(address);
+}
