@@ -102,7 +102,7 @@ export default function ReceiveMoneyScreen() {
               {/* Wallet Address Preview */}
               <View className="mt-4 rounded-xl bg-gray-50 px-4 py-2">
                 <Text className="font-mono text-xs text-muted-foreground">
-                  {walletAddress?.slice(0, 12)}...{walletAddress?.slice(-12)}
+                  {walletAddress ? shortenAddress(walletAddress) : ''}
                 </Text>
               </View>
             </View>
