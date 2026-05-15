@@ -145,7 +145,7 @@ export default function ExploreScreen() {
                   <View className="mb-3 flex-row items-center gap-2 rounded-lg bg-purple-50 p-3 dark:bg-purple-950">
                     <Icon as={Coins} size={16} className="text-purple-600" />
                     <Text className="text-sm font-medium text-purple-600">
-                      Tokenized Post · {post.tokenSupply} tokens @ {post.tokenPrice} SOL
+                      Tokenized Post · {post.tokenSupply} tokens @ {post.tokenPrice} STX
                     </Text>
                   </View>
                 )}
