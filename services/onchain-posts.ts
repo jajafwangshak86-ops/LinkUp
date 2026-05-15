@@ -16,7 +16,7 @@ import {
   StacksTestnet,
   StacksMainnet,
 } from '@stacks/transactions';
-import { createHash } from 'crypto';
+import * as Crypto from 'expo-crypto';
 
 const NETWORK = process.env.STACKS_NETWORK === 'mainnet'
   ? new StacksMainnet()
@@ -32,9 +32,12 @@ export async function createPostOnChain(
   postJson: string,   // full post content — will be hashed
   gaiaUrl: string,    // where the full content is stored in Gaia
 ): Promise<string> {
-  const contentHash = Buffer.from(
-    createHash('sha256').update(postJson).digest()
+  const hashHex = await Crypto.digestStringAsync(
+    Crypto.CryptoDigestAlgorithm.SHA256,
+    postJson,
+    { encoding: Crypto.CryptoEncoding.HEX },
   );
+  const contentHash = Buffer.from(hashHex, 'hex');
 
   const tx = await makeContractCall({
     contractAddress: CONTRACT_ADDRESS,
