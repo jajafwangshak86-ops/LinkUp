@@ -1,0 +1,82 @@
+{
+  "project_info": {
+    "project_number": "930694187507",
+    "project_id": "flighterr-6b626",
+    "storage_bucket": "flighterr-6b626.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930694187507:android:70dcf0a79ee0368e82aa86",
+        "android_client_info": {
+          "package_name": "com.arome.dev.linkup"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930694187507-fcd88karpp1ckp0ca2h30lgmaqncb12p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTuGHcQW0XFjUBChsAAlTZwHoQa1hOMhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930694187507-fcd88karpp1ckp0ca2h30lgmaqncb12p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "930694187507-r0brouscjbpieggv34ptsvgcjcq4i4um.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flighterr"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:930694187507:android:c4a5e126621a8e1a82aa86",
+        "android_client_info": {
+          "package_name": "com.example.flighterr"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "930694187507-fcd88karpp1ckp0ca2h30lgmaqncb12p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBTuGHcQW0XFjUBChsAAlTZwHoQa1hOMhk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "930694187507-fcd88karpp1ckp0ca2h30lgmaqncb12p.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "930694187507-r0brouscjbpieggv34ptsvgcjcq4i4um.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.flighterr"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
