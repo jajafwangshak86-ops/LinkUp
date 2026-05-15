@@ -239,7 +239,7 @@ export default function SendMoneyScreen() {
           <View className="mt-3 gap-2">
             <View className="flex-row justify-between">
               <Text className="text-sm text-muted-foreground">Network</Text>
-              <Text className="text-sm font-medium">Stacks Testnet</Text>
+              <Text className="text-sm font-medium">Stacks Testnet 🟠</Text>
             </View>
             <View className="flex-row justify-between">
               <Text className="text-sm text-muted-foreground">Network Fee</Text>
