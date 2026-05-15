@@ -1,0 +1,31 @@
+id: 0
+name: Mainnet deployment
+network: mainnet
+stacks-node: https://api.hiro.so
+bitcoin-node: http://blockstack:blockstacksystem@bitcoin.blockstack.com:8332
+plan:
+  batches:
+  - id: 0
+    transactions:
+    - transaction-type: contract-publish
+      contract-name: linkup-custody
+      expected-sender: SP2F5Q3JWH4P5YV2S056W4PHZN2CWN00TDQRBX4J7
+      cost: 22410
+      path: programs/linkup-custody/linkup-custody.clar
+      anchor-block-only: true
+      clarity-version: 3
+    - transaction-type: contract-publish
+      contract-name: linkup-factory
+      expected-sender: SP2F5Q3JWH4P5YV2S056W4PHZN2CWN00TDQRBX4J7
+      cost: 51210
+      path: programs/linkup-factory/linkup-factory.clar
+      anchor-block-only: true
+      clarity-version: 3
+    - transaction-type: contract-publish
+      contract-name: linkup-posts
+      expected-sender: SP2F5Q3JWH4P5YV2S056W4PHZN2CWN00TDQRBX4J7
+      cost: 42630
+      path: programs/linkup-posts/linkup-posts.clar
+      anchor-block-only: true
+      clarity-version: 3
+    epoch: '3.0'

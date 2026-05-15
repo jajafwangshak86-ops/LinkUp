@@ -2,13 +2,20 @@
 name = "linkup"
 authors = []
 
+[contracts.linkup-factory]
+path = "programs/linkup-factory/linkup-factory.clar"
+clarity_version = 3
+epoch = "3.0"
+
 [contracts.linkup-custody]
 path = "programs/linkup-custody/linkup-custody.clar"
-requirements = []
+clarity_version = 3
+epoch = "3.0"
 
 [contracts.linkup-posts]
 path = "programs/linkup-posts/linkup-posts.clar"
-requirements = []
+clarity_version = 3
+epoch = "3.0"
 
 [repl.settings]
 enable_repl = true

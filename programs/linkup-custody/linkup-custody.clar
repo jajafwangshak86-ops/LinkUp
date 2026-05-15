@@ -9,7 +9,7 @@
 
 (define-constant DAILY-LIMIT-USTX u1000000000) ;; 1000 STX in micro-STX
 
-;; Track daily spend per principal: { user → { day → total-spent } }
+;; Track daily spend per principal: { user -> { day -> total-spent } }
 (define-map daily-spend
   { user: principal, day: uint }
   { total: uint }
@@ -59,6 +59,6 @@
 )
 
 ;; Error code reference:
-;; u100 — ERR-DAILY-LIMIT-EXCEEDED: user has spent >= 1000 STX today
-;; u101 — ERR-ZERO-AMOUNT: transfer amount must be > 0
-;; u102 — ERR-SELF-TRANSFER: sender and recipient must differ
+;; u100 - ERR-DAILY-LIMIT-EXCEEDED: user has spent >= 1000 STX today
+;; u101 - ERR-ZERO-AMOUNT: transfer amount must be > 0
+;; u102 - ERR-SELF-TRANSFER: sender and recipient must differ
