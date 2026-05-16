@@ -75,6 +75,7 @@ export default function ChatScreen() {
           <Text className="text-sm text-muted-foreground">@{otherParticipant?.username || 'user'}</Text>
         </View>
         <PusherStatus compact />
+        <GaiaStatusBadge />
       </View>
 
       {/* Messages */}
