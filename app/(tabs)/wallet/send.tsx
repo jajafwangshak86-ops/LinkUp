@@ -92,6 +92,7 @@ export default function SendMoneyScreen() {
       isValid = false;
     } else if (!/^S[PT][A-Z0-9]{38,}$/.test(recipient)) {
       newErrors.recipient = 'Invalid Stacks address (must start with SP or ST)';
+          <Text className="mt-1 text-xs text-muted-foreground">Starts with SP (mainnet) or ST (testnet)</Text>
       isValid = false;
     }
 
