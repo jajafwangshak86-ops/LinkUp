@@ -114,7 +114,7 @@ export default function ChatScreen() {
                     <View className="flex-row items-center gap-2">
                       <Icon as={DollarSign} size={16} className="text-green-600" />
                       <Text className="font-semibold text-green-600">
-                        {msg.isMine ? 'Sent' : 'Received'} {msg.paymentAmount} STX
+                        {msg.isMine ? 'Sent {msg.paymentAmount} STX
                       </Text>
                     </View>
                     <Text className="mt-1 text-xs text-muted-foreground">{formatTime(msg.createdAt)}</Text>
