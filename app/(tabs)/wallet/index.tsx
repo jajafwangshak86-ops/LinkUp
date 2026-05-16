@@ -11,7 +11,7 @@ import { useAllTokenPrices } from '@/hooks/useTokenPrice';
 import { useStxPrice } from '@/hooks/useStxPrice';
 import type { Transaction, User } from '@/types';
 import { TOKENS } from '@/lib/tokens';
-import { TransactionCard } from '@/components/wallet';
+import { TransactionCard, StxPriceCard } from '@/components/wallet';
 
 export default function WalletScreen() {
   const { t } = useTranslation();
