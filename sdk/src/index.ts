@@ -12,3 +12,4 @@ export * from './factory';
 export * from './custody';
 export * from './posts';
 export * from './types';
+export * from './errors';
