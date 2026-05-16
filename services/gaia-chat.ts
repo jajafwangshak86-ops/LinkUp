@@ -14,13 +14,15 @@
 const GAIA_HUB = GAIA_HUB;
 
 export interface GaiaMessage {
-  id: string;           // uuid
+  id: string;
   chatId: string;
   senderAddress: string;
   content: string;
-  type: 'text' | 'payment';
+  type: 'text' | 'payment' | 'image';
   paymentTxId?: string;
   paymentAmount?: number; // micro-STX
+  /** View-once: recipient can only open this message once */
+  viewOnce?: boolean;
   createdAt: number;    // unix ms timestamp
 }
 

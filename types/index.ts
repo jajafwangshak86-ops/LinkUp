@@ -81,11 +81,13 @@ export interface Message {
   /** Stacks wallet address of sender */
   senderAddress: string;
   content: string;
-  type: 'text' | 'payment';
+  type: 'text' | 'payment' | 'image';
   /** Amount in micro-STX */
   paymentAmount?: number;
   /** Stacks transaction ID for payment messages */
   paymentTxId?: string;
+  /** If true, message can only be viewed once by recipient */
+  viewOnce?: boolean;
   createdAt: number; // unix ms
   /** True if this message was sent by the current user */
   isMine?: boolean;
