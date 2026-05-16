@@ -6,6 +6,7 @@ import { router, useLocalSearchParams } from 'expo-router';
 import { useState, useRef, useEffect } from 'react';
 import { useMessages, useChat } from '@/hooks/useChats';
 import type { Message } from '@/types';
+import { formatChatTime } from '@/lib/format';
 import { PusherStatus } from '@/components/PusherStatus';
 
 export default function ChatScreen() {
@@ -37,7 +38,8 @@ export default function ChatScreen() {
     setShowTipModal(false);
   };
 
-  const formatTime = (date: string) => {
+  // Use formatChatTime from lib/format for Gaia messages (unix ms)
+  const formatTime = (date: string | number) => {
     try {
       const msgDate = new Date(date);
       return `${msgDate.getHours().toString().padStart(2, '0')}:${msgDate.getMinutes().toString().padStart(2, '0')}`;
