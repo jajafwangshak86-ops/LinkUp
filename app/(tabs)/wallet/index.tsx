@@ -8,6 +8,7 @@ import { useWallet } from '@/hooks/useWallet';
 import { useTokenHoldings } from '@/hooks/usePortfolio';
 import { useAuth } from '@/hooks/useAuth';
 import { useAllTokenPrices } from '@/hooks/useTokenPrice';
+import { useStxPrice } from '@/hooks/useStxPrice';
 import type { Transaction, User } from '@/types';
 import { TOKENS } from '@/lib/tokens';
 import { TransactionCard } from '@/components/wallet';
@@ -22,9 +23,9 @@ export default function WalletScreen() {
   const { holdings, totalValue, isLoading: isLoadingHoldings, refetch: refetchHoldings } = useTokenHoldings(userId);
   const { data: tokenPrices, isLoading: isLoadingPrices, refetch: refetchPrices } = useAllTokenPrices();
 
-  const stxPrice = tokenPrices?.STX ?? 0;
+  const { data: stxPriceData } = useStxPrice();
+  const stxPrice = stxPriceData?.usd ?? tokenPrices?.STX ?? 0;
   const usdValue = balance * stxPrice;
-  });
 
   const handleRefresh = async () => {
     await Promise.all([refetchBalance(), refetchHoldings(), refetchPrices()]);
