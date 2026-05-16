@@ -67,7 +67,7 @@ export function FeedPostCard({
             <View className="mt-2 flex-row items-center gap-2 self-start rounded-full bg-purple-100 dark:bg-purple-950 px-3 py-1">
               <Icon as={Coins} size={14} className="text-purple-600 dark:text-purple-400" />
               <Text className="text-xs font-medium text-purple-600 dark:text-purple-400">
-                {post.tokenSupply} tokens @ {post.tokenPrice} SOL
+                {post.tokenSupply} tokens @ {post.tokenPrice} STX
               </Text>
             </View>
           )}
