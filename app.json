@@ -13,12 +13,16 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true,
       "icon": "./assets/images/not.png",
       "bundleIdentifier": "app.linkup",
-      "associatedDomains": ["applinks:linkup.app"]
+      "associatedDomains": [
+        "applinks:linkup.app"
+      ]
     },
     "android": {
       "edgeToEdgeEnabled": true,
@@ -26,7 +30,7 @@
         "foregroundImage": "./assets/images/appicon.png",
         "backgroundColor": "#ffffff"
       },
-      "softwareKeyboardLayoutMode":"pan",
+      "softwareKeyboardLayoutMode": "pan",
       "package": "app.linkup",
       "notification": {
         "icon": "./assets/images/not.png",
@@ -46,7 +50,10 @@
               "scheme": "linkup"
             }
           ],
-          "category": ["BROWSABLE", "DEFAULT"]
+          "category": [
+            "BROWSABLE",
+            "DEFAULT"
+          ]
         }
       ]
     },
@@ -56,7 +63,7 @@
       "favicon": "./assets/images/appicon.png"
     },
     "plugins": [
-      "expo-router", 
+      "expo-router",
       "expo-font",
       [
         "expo-notifications",
@@ -75,6 +82,7 @@
       "eas": {
         "projectId": "56fdee7f-b519-4073-82f5-a101986d5c31"
       }
-    }
+    },
+    "description": "Social payments on Bitcoin \u2014 non-custodial by design, private by default."
   }
 }
