@@ -38,11 +38,11 @@ export function TipModal({
         <View className="w-full max-w-sm rounded-2xl bg-background p-6">
           <Text className="text-xl font-bold">{t('common.tip')} {t('common.post')}</Text>
           <Text className="mt-2 text-sm text-muted-foreground">
-            {t('common.send')} SOL {t('common.to')} @{recipientUsername}
+            {t('common.send')} STX {t('common.to')} @{recipientUsername}
           </Text>
 
           <View className="mt-4">
-            <Text className="mb-2 text-sm font-medium">{t('wallet.amount')} (SOL)</Text>
+            <Text className="mb-2 text-sm font-medium">{t('wallet.amount')} (STX)</Text>
             <TextInput
               value={amount}
               onChangeText={setAmount}
@@ -52,7 +52,17 @@ export function TipModal({
             />
           </View>
 
-          <View className="mt-6 flex-row gap-3">
+          <View className="mt-4 flex-row gap-2">
+            {['0.1', '0.5', '1', '5'].map(q => (
+              <TouchableOpacity
+                key={q}
+                onPress={() => setAmount(q)}
+                className="flex-1 items-center rounded-lg bg-green-50 dark:bg-green-950 py-2"
+              >
+                <Text className="text-xs font-semibold text-green-700 dark:text-green-300">{q}</Text>
+              </TouchableOpacity>
+            ))}
+          </View>
             <TouchableOpacity
               onPress={onClose}
               className="flex-1 rounded-xl border border-border py-3"
