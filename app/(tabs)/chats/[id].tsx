@@ -73,14 +73,12 @@ export default function ChatScreen() {
     const result = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.Images,
       quality: 0.8,
-      base64: true,
     });
     if (result.canceled || !result.assets[0]) return;
 
     setIsUploadingImage(true);
     try {
-      const base64 = `data:image/jpeg;base64,${result.assets[0].base64}`;
-      const url = await uploadImage(base64);
+      const url = await uploadImage(result.assets[0].uri);
       sendMessage({ content: url, type: 'image', viewOnce: isViewOnce });
       setIsViewOnce(false);
     } catch {

@@ -255,10 +255,10 @@ class ApiClient {
     return this.request(`/chats/${chatId}/messages?page=${page}&limit=${limit}`);
   }
 
-  async sendMessage(chatId: string, content: string, type: string = 'text') {
+  async sendMessage(chatId: string, content: string, type: string = 'text', viewOnce?: boolean) {
     return this.request(`/chats/${chatId}/messages`, {
       method: 'POST',
-      body: JSON.stringify({ content, type }),
+      body: JSON.stringify({ content, type, viewOnce }),
     });
   }
 

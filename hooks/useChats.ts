@@ -155,8 +155,8 @@ export function useMessages(chatId: string) {
 
   // Send message
   const sendMessageMutation = useMutation({
-    mutationFn: async ({ content, type }: { content: string; type?: string }) => {
-      const response = await api.sendMessage(chatId, content, type);
+    mutationFn: async ({ content, type, viewOnce }: { content: string; type?: string; viewOnce?: boolean }) => {
+      const response = await api.sendMessage(chatId, content, type, viewOnce);
       if (response.error) throw new Error(response.error);
       return response.data;
     },
