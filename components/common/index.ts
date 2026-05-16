@@ -6,3 +6,5 @@ export { ErrorState } from './ErrorState';
 export { ConfirmDialog } from './ConfirmDialog';
 export { Divider } from './Divider';
 export { EmptyState } from './EmptyState';
+export { NetworkBadge } from './NetworkBadge';
+export { EmptyFeed } from './EmptyFeed';
