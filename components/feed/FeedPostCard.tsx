@@ -137,7 +137,7 @@ export function FeedPostCard({
           {post.totalTipsAmount > 0 && (
             <View className="mt-2 rounded-lg bg-green-50 dark:bg-green-950 p-2">
               <Text className="text-xs text-green-700 dark:text-green-300">
-                💰 {t('feed.receivedTips', { amount: post.totalTipsAmount.toFixed(4) })}
+                💰 {post.totalTipsAmount.toFixed(4)} STX tipped
               </Text>
             </View>
           )}
