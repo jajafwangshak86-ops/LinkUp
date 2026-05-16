@@ -9,10 +9,10 @@
 
 (define-constant DAILY-LIMIT-USTX u1000000000) ;; 1000 STX in micro-STX
 
-;; Track daily spend per principal: { user -> { day -> total-spent } }
+;; Track daily spend per principal - value is plain uint (micro-STX spent)
 (define-map daily-spend
   { user: principal, day: uint }
-  { total: uint }
+  uint
 )
 
 (define-private (current-day)
@@ -20,15 +20,11 @@
 )
 
 (define-private (get-spent-on-day (user principal) (day uint))
-  (default-to u0
-    (get total (map-get? daily-spend { user: user, day: day }))
-  )
+  (default-to u0 (map-get? daily-spend { user: user, day: day }))
 )
 
-;; Bug 1 fix: accept day + current-spent as params to avoid re-reading map
-;; and eliminate the block-boundary day-mismatch risk.
 (define-private (record-spend (user principal) (day uint) (new-total uint))
-  (map-set daily-spend { user: user, day: day } { total: new-total })
+  (map-set daily-spend { user: user, day: day } new-total)
 )
 
 ;; send-stx: transfer STX with daily limit enforcement
@@ -42,7 +38,6 @@
     (asserts! (<= amount DAILY-LIMIT-USTX) ERR-DAILY-LIMIT-EXCEEDED)
     (asserts! (<= (+ spent amount) DAILY-LIMIT-USTX) ERR-DAILY-LIMIT-EXCEEDED)
     (try! (stx-transfer? amount tx-sender recipient))
-    ;; Bug 1 fix: record spend using the same `day` and `spent` values bound above
     (record-spend tx-sender day (+ spent amount))
     (ok true)
   )
