@@ -25,7 +25,7 @@ export default function ReceiveMoneyScreen() {
     
     try {
       await Share.share({
-        message: `Send STX to my wallet:\n${walletAddress}`,
+        message: `Send STX to my LinkUp wallet on Stacks Mainnet:\n${walletAddress}`,
         title: 'My Stacks Wallet Address',
       });
     } catch (error) {
