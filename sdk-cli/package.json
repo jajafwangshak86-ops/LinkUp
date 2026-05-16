@@ -1,10 +1,20 @@
 {
   "name": "linkup-cli",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI tool for interacting with LinkUp contracts on Stacks/Bitcoin",
-  "bin": { "linkup": "./bin/linkup.js" },
+  "bin": {
+    "linkup": "./bin/linkup.js"
+  },
   "main": "bin/linkup.js",
-  "keywords": ["stacks", "bitcoin", "cli", "linkup", "clarity", "web3", "blockchain"],
+  "keywords": [
+    "stacks",
+    "bitcoin",
+    "cli",
+    "linkup",
+    "clarity",
+    "web3",
+    "blockchain"
+  ],
   "author": "LinkUp",
   "license": "MIT",
   "repository": {
