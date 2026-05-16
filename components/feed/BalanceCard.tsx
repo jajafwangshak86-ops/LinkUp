@@ -108,7 +108,7 @@ export function BalanceCard({
           {/* Network Badge */}
           <View className="mt-4 flex-row items-center gap-2 self-start rounded-full bg-white/10 px-3 py-1.5">
             <Icon as={Circle} size={8} className="text-green-400" fill="#4ade80" />
-            <Text className="text-xs font-medium text-white">{t('wallet.solanaDevnet')}</Text>
+            <Text className="text-xs font-medium text-white">Stacks Mainnet</Text>
           </View>
         </View>
       </ImageBackground>
