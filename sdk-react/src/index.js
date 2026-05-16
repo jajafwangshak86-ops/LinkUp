@@ -1,8 +1,28 @@
 /**
  * linkup-react
  * React hooks for LinkUp smart contracts on Stacks/Bitcoin.
- * Wraps linkup-stacks-sdk with React Query hooks.
  */
-const { getStats, isRegistered, getUser, getPost } = require('linkup-stacks-sdk');
 
-module.exports = { getStats, isRegistered, getUser, getPost };
+const { getStats, isRegistered, getUser, getPost, getAddressByUsername } = require('linkup-stacks-sdk');
+
+/** Fetch global LinkUp stats */
+async function useLinkUpStats() {
+  return getStats();
+}
+
+/** Check if a Stacks address is registered on LinkUp */
+async function useIsRegistered(address) {
+  return isRegistered(address);
+}
+
+/** Get a user profile by address */
+async function useUserProfile(address) {
+  return getUser(address);
+}
+
+/** Get a post by ID */
+async function usePost(postId) {
+  return getPost(postId);
+}
+
+module.exports = { useLinkUpStats, useIsRegistered, useUserProfile, usePost };

@@ -1,9 +1,17 @@
 {
   "name": "linkup-react",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React hooks for LinkUp on Stacks/Bitcoin",
   "main": "src/index.js",
-  "keywords": ["stacks", "bitcoin", "react", "hooks", "linkup", "web3", "clarity"],
+  "keywords": [
+    "stacks",
+    "bitcoin",
+    "react",
+    "hooks",
+    "linkup",
+    "web3",
+    "clarity"
+  ],
   "author": "LinkUp",
   "license": "MIT",
   "repository": {
