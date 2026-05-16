@@ -150,6 +150,7 @@ export default function SendMoneyScreen() {
               }}
               placeholder="Enter Stacks wallet address (SP... or ST...)"
               placeholderTextColor="#9ca3af"
+              placeholderTextColor="#9ca3af"
               className="text-base text-foreground"
               autoCapitalize="none"
               autoCorrect={false}
