@@ -11,7 +11,7 @@
  */
 
 // Bug 1 fix: removed unused stacksConfig import
-const GAIA_HUB = 'https://hub.hiro.so';
+const GAIA_HUB = GAIA_HUB;
 
 export interface GaiaMessage {
   id: string;           // uuid
