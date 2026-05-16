@@ -8,6 +8,7 @@ import QRCode from 'react-native-qrcode-svg';
 import { toast } from 'sonner-native';
 import * as Clipboard from 'expo-clipboard';
 import { useWallet } from '@/hooks/useWallet';
+import { NetworkBadge } from '@/components/common';
 
 export default function ReceiveMoneyScreen() {
   const { walletAddress, balance } = useWallet();
