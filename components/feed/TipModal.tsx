@@ -63,6 +63,8 @@ export function TipModal({
               </TouchableOpacity>
             ))}
           </View>
+
+          <View className="mt-6 flex-row gap-3">
             <TouchableOpacity
               onPress={onClose}
               className="flex-1 rounded-xl border border-border py-3"

@@ -8,6 +8,7 @@ import { useMessages, useChat } from '@/hooks/useChats';
 import type { Message } from '@/types';
 import { formatChatTime } from '@/lib/format';
 import { PusherStatus } from '@/components/PusherStatus';
+import { GaiaStatusBadge } from '@/components/common';
 
 export default function ChatScreen() {
   const { id } = useLocalSearchParams<{ id: string }>();
@@ -114,7 +115,7 @@ export default function ChatScreen() {
                     <View className="flex-row items-center gap-2">
                       <Icon as={DollarSign} size={16} className="text-green-600" />
                       <Text className="font-semibold text-green-600">
-                        {msg.isMine ? 'Sent {msg.paymentAmount} STX
+                        {msg.isMine ? 'Sent' : 'Received'} {msg.paymentAmount} STX
                       </Text>
                     </View>
                     <Text className="mt-1 text-xs text-muted-foreground">{formatTime(msg.createdAt)}</Text>
