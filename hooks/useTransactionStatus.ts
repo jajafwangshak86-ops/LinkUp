@@ -12,6 +12,6 @@ export function useTransactionStatus(txId: string) {
       return data.tx_status as TxStatus;
     },
     enabled: !!txId,
-    refetchInterval: (data) => (data === 'pending' ? 5_000 : false),
+    refetchInterval: (data) => (data === 'pending' ? 10_000 : false),
   });
 }
