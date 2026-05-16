@@ -8,3 +8,7 @@ export { Divider } from './Divider';
 export { EmptyState } from './EmptyState';
 export { NetworkBadge } from './NetworkBadge';
 export { EmptyFeed } from './EmptyFeed';
+export { LinkUpStats } from './LinkUpStats';
+export { GaiaStatusBadge } from './GaiaStatusBadge';
+export { BitcoinAnchorBadge } from './BitcoinAnchorBadge';
+export { TxStatusBadge } from './TxStatusBadge';
