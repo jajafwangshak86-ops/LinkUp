@@ -13,3 +13,5 @@ export { TipModal } from './TipModal';
 export { BuyTokenModal } from './BuyTokenModal';
 export { FeedPostCard } from './FeedPostCard';
 
+export { FeedPostSkeleton } from './FeedPostSkeleton';
+export { OnChainBadge } from './OnChainBadge';
